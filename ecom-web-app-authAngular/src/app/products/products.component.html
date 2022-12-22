@@ -1,0 +1,42 @@
+<div class="alert alert-primary" role="alert">
+ List Of <b>Products</b>!
+</div>
+<div class="container">
+  <form [formGroup]="productFormGroup"  (ngSubmit)="saveProduct()">
+    <div class="form-group">
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Name" formControlName="name">
+    </div><br>
+    <div class="form-group">
+      <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Product Price" formControlName="price">
+    </div><br>
+    <div class="form-group">
+      <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Product Quantity" formControlName="quantity">
+    </div><br>
+   
+    <button type="submit" class="btn btn-success">Add new product </button>
+  </form>
+<br><br>
+
+  <table class="table" *ngIf="products">
+    <thead>
+      <tr class="text-white">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-white" *ngFor="let p of products._embedded.products">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.quantity}}</td>
+        <td>
+          <a type="submit" (click)="deleteProduct(p.id)"><b style="color: red;"><img src="https://img.icons8.com/fluency/512/delete-forever.png" width="20px" alt=""> Delete</b></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
